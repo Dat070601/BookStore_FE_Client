@@ -6,18 +6,16 @@ import React from 'react'
 
 const MenuItemComponent = ({ title, method }) => {
 
-  const { isOpen: isMenuListOpen, onOpen: onMenuListOpen, onClose: onMenuListClose } = useDisclosure()
-
   return (
-    <Menu isOpen={isMenuListOpen}>
-      <MenuItem>
-        <MenuButton  as={Button} rightIcon={<ChevronDownIcon />} onClick={() => isMenuListOpen ? onMenuListClose() : onMenuListOpen()}>
+    <Menu>
+      <MenuButton  as={Button} rightIcon={<ChevronDownIcon />}>
           {title}
-        </MenuButton>
-        <MenuList>
-          <MenuItem onClick={() => method()}>Xem lịch sử mua hàng</MenuItem>
-        </MenuList>
-      </MenuItem>
+        </MenuButton>        
+      <MenuList>
+        <MenuItem>
+            <MenuItem onClick={() => method()}>Xem lịch sử mua hàng</MenuItem>
+        </MenuItem>        
+      </MenuList>
     </Menu>
   )
 }

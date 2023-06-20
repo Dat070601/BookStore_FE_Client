@@ -1,8 +1,8 @@
 import React from 'react'
-import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Heading, Text } from '@chakra-ui/react'
+import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Heading, MenuButton, Text, Menu, MenuList, MenuItem, Button } from '@chakra-ui/react'
 import { COLOR } from '../../../constant'
 
-const OrderAccordion = ({ orderTitle, date, messageOrder, paymentMethod, phoneNumber, address, district, city, price, status }) => {
+const OrderAccordion = ({ orderTitle, date, messageOrder, paymentMethod, phoneNumber, address, district, city, price, status, handleDisposeOrder }) => {
   return (
     <Accordion allowMultiple>
       <AccordionItem>
@@ -22,7 +22,16 @@ const OrderAccordion = ({ orderTitle, date, messageOrder, paymentMethod, phoneNu
           </Box>
           <Box display={"flex"} justifyContent={"space-between"} mx="10px" my="20px">
             <Text fontSize={"20px"}>Tổng thanh toán: <Box as={"span"} fontWeight={"bold"}>{price}</Box></Text>
-            <Text>Trạng thái: <Box as={"span"} fontWeight={"bold"}>{status}</Box></Text>
+            <Text>Trạng thái: <Box as={"span"} fontWeight={"bold"}>
+              <Menu>
+                <MenuButton disabled={status === "Chờ Xác Nhận" || status === "Đã Thanh Toán" ? false : true}>{status}</MenuButton>
+                <MenuList>
+                  <MenuItem onClick={handleDisposeOrder}>
+                    <Text>Hủy đơn hàng</Text>
+                  </MenuItem>
+                </MenuList>
+              </Menu>
+            </Box></Text>
           </Box>
         </AccordionPanel>
       </AccordionItem>

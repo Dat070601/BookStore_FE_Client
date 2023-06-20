@@ -3,13 +3,10 @@ import OrderHistoryViewModel from './OrderHistoryViewModel'
 import OrderAccordion from '../../components/OrderHistory/OrderAccordion/OrderAccordion'
 import { Box, Container } from '@chakra-ui/react'
 import { COLOR } from '../../constant'
-import StatusMenu from '../../components/OrderHistory/StatusMenu/StatusMenu'
 
 const OrderHistory = () => {
 
-  const { orderHistories } = OrderHistoryViewModel()
-
-  console.log(orderHistories)
+  const { orderHistories, handleDisposeOrder } = OrderHistoryViewModel()
 
   return (
     <Container my="50px" maxW={"container.xl"}>
@@ -30,6 +27,7 @@ const OrderHistory = () => {
                     district={orderHistory?.district}
                     price={orderDetail?.price}
                     status={orderHistory?.orderStatus}
+                    handleDisposeOrder={() => handleDisposeOrder({ orderId: orderHistory?.orderId, statusName: "Đã Hủy" })}
                   />
                 )
               })}
