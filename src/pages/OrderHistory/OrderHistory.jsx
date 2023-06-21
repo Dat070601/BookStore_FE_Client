@@ -9,11 +9,11 @@ const OrderHistory = () => {
   const { orderHistories, handleDisposeOrder } = OrderHistoryViewModel()
 
   return (
-    <Container my="50px" maxW={"container.xl"}>
-      <Box border={"1px solid"} color={COLOR}>
+    <Container my="50px" maxW={"container.xl"} height={"90vh"} overflow={"hidden"} overflowY={"auto"} border={`1px solid ${COLOR}`}>
+      <Box color={COLOR}>
         {orderHistories.map(orderHistory => {
           return (
-            <>
+            <Box>
               {orderHistory.orderDetails?.map(orderDetail => {
                 return (
                   <OrderAccordion 
@@ -31,7 +31,7 @@ const OrderHistory = () => {
                   />
                 )
               })}
-            </>
+            </Box>
           )
         })}
       </Box>
