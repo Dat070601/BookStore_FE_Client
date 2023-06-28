@@ -30,7 +30,7 @@ function Category({category}) {
 const ListCategory = ({mainCategories}) => {
     return (
         <Box rounded={"20px"} boxShadow={"xl"} bg="white" mt="20px" padding={"20px"} w={"300px"} minHeight={"800px"}>
-          <Text fontFamily={'arial'} fontWeight={'bold'} color={COLOR} fontSize={'xl'}>Danh mục sản phẩm</Text>
+          <Text fontFamily={'arial'} fontWeight={'bold'} color={COLOR} fontSize={'xl'} mb={10}>Danh mục sản phẩm</Text>
           <Accordion>
             {mainCategories.map((category) => (
               <AccordionItem>
