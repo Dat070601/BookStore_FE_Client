@@ -38,10 +38,10 @@ const getOrderByCustomerIdAsync = async (url, token) => {
   }
 }
 
-const changeStatusOfOrderAsync = async (url, { orderId, statusOrder }) => {
+const changeStatusOfOrderAsync = async (url, { orderId, statusName }) => {
   try {
-    const response = await axios.put(`${url}/api/order/${orderId}`, {
-      statusOrder
+    const response = await axios.put(`${url}/api/order/status/${orderId}`, {
+      statusName
     })
     return response.data
   } catch (error) {

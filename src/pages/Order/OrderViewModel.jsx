@@ -8,12 +8,14 @@ import { paymentSelector } from '../../stores/reducers/PaymentReducer'
 import { getOrderByCustomerIdAsyncThunk } from '../../stores/thunks/OrderThunk'
 import { createPaymentAsyncThunk } from '../../stores/thunks/PaymentThunk'
 import { changeStatusOfOrderAsyncThunk } from '../../stores/thunks/OrderThunk'
+import { useDisclosure } from '@chakra-ui/react'
 
 const OrderViewModel = () => {
   const dispatch = useDispatch()
   const params = useParams()
   const { order, isSuccessOfOrder } = useSelector(orderSelector)
   const { redirectUrl, isSuccess } = useSelector(paymentSelector)
+  const { isOpen: isBuyProductSuccessModalOpen, onOpen: onBuyProductSuccessModalOpen, onClose: onCloseProductSuccessModalClose } = useDisclosure()
   const navigate = useNavigate()
   const [ loading, setLoading ] = useState(true)
   const { get } = useLocalStorage()
@@ -38,6 +40,20 @@ const OrderViewModel = () => {
     }))
   }
 
+  const handleNavigateToBuyingSuccessPage = () => {
+    navigate("/payment-success", { replace: true, state: { message: "Đặt hàng thành công" }})
+  }
+
+  const handleAcceptOrderWithShippingMethod = async ({ orderId, statusName }) => {
+    dispatch(changeStatusOfOrderAsyncThunk({
+      orderId,
+      statusName
+    }))
+    setTimeout(() => {
+      handleNavigateToBuyingSuccessPage()
+    }, 2000)
+  }
+
   useEffect(() => {
     if (isSuccess === true)
     {
@@ -46,13 +62,12 @@ const OrderViewModel = () => {
 
   }, [isSuccess, navigateToPaymentPage])
 
-  const cancelOrder = ({ orderId, statusOrder }) => {
+  const cancelOrder = ({ orderId, statusName }) => {
     setIsCancelLoading(true)
     dispatch(changeStatusOfOrderAsyncThunk({
       orderId,
-      statusOrder
+      statusName
     }))
-    console.log(isSuccessOfOrder)
     if (isSuccessOfOrder == true)
     {
       setTimeout(() => {
@@ -68,8 +83,11 @@ const OrderViewModel = () => {
     order,
     loading,
     navigateToPaymentPage,
+    handleAcceptOrderWithShippingMethod,
     cancelOrder,
-    isCancelLoading
+    isCancelLoading,
+    isBuyProductSuccessModalOpen,
+    onCloseProductSuccessModalClose
   }
 }
 

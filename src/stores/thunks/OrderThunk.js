@@ -40,7 +40,7 @@ const changeStatusOfOrderAsyncThunk = createAsyncThunk("/order/change-status-of-
   try {
     const response = await changeStatusOfOrderAsync(URL, {
       orderId: payload.orderId,
-      statusOrder: payload.statusOrder
+      statusName: payload.statusName
     })
     console.log(response)
     return response
