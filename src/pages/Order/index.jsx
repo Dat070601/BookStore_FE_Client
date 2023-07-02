@@ -49,7 +49,7 @@ const Order = () => {
               orderId: order.orderId,
               statusName: "Đã Xác Nhận"
             })}
-            >Giao hàng tận nơi (Tiền mặt)
+            >Thanh toán bằng tiền mặt
           </Button>
           <Button 
             bg={COLOR} 

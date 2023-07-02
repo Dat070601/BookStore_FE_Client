@@ -43,7 +43,7 @@ const PaymentResult = () => {
     <Box mt={"100px"} h={"50vh"}>
       {!loading ? <Fade in={!loading}><VStack>
         <Icon as={BsCheckCircle} width="300px" height={"50px"} color={COLOR} />
-        <Text fontSize={"40px"} fontWeight={"light"} color="gray.700">{location.state?.message && "Thanh toán thành công"}</Text>
+        <Text fontSize={"40px"} fontWeight={"light"} color="gray.700">{location.state?.message && "Đặt hàng thành công"}</Text>
         <Text>Cảm ơn vì đã mua hàng cùng chúng tôi</Text>
         <Box>
           <Link to="/home" style={{ color: COLOR }}>Tiếp tục mua sắm</Link>

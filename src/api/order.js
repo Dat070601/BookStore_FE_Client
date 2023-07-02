@@ -49,9 +49,21 @@ const changeStatusOfOrderAsync = async (url, { orderId, statusName }) => {
   }
 }
 
+const changeStatusOfOrderCashAsync = async (url, { orderId, statusName }) => {
+  try {
+    const response = await axios.put(`${url}/api/order/status/${orderId}/cash`, {
+      statusName
+    })
+    return response.data
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export { 
   addOrderAsync,
   getOrderAsyncById,
   getOrderByCustomerIdAsync,
-  changeStatusOfOrderAsync
+  changeStatusOfOrderAsync,
+  changeStatusOfOrderCashAsync
 }

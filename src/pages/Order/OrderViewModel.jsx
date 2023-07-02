@@ -5,7 +5,7 @@ import { getOrderByCustomerIdAsync } from '../../api/order'
 import useLocalStorage from '../../hooks/useLocalStorage'
 import { orderSelector } from '../../stores/reducers/OrderReducer'
 import { paymentSelector } from '../../stores/reducers/PaymentReducer'
-import { getOrderByCustomerIdAsyncThunk } from '../../stores/thunks/OrderThunk'
+import { changeStatusOfOrderCashAsyncThunk, getOrderByCustomerIdAsyncThunk } from '../../stores/thunks/OrderThunk'
 import { createPaymentAsyncThunk } from '../../stores/thunks/PaymentThunk'
 import { changeStatusOfOrderAsyncThunk } from '../../stores/thunks/OrderThunk'
 import { useDisclosure } from '@chakra-ui/react'
@@ -41,11 +41,11 @@ const OrderViewModel = () => {
   }
 
   const handleNavigateToBuyingSuccessPage = () => {
-    navigate("/payment-success", { replace: true, state: { message: "Đặt hàng thành công" }})
+    navigate("https://cap-stone-project-fe-dat070601.vercel.app/#/payment-success", { replace: true, state: { message: "Đặt hàng thành công" }})
   }
 
   const handleAcceptOrderWithShippingMethod = async ({ orderId, statusName }) => {
-    dispatch(changeStatusOfOrderAsyncThunk({
+    dispatch(changeStatusOfOrderCashAsyncThunk({
       orderId,
       statusName
     }))
